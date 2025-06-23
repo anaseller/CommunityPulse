@@ -1,0 +1,24 @@
+# CommunityPulse/
+# ├── src/
+# │   ├── __init__.py
+# │   ├── api/
+# │   │   ├── __init__.py
+# │   │   ├── routes/
+# │   │   └── controllers/
+# │   ├── core/
+# │   │   ├── __init__.py
+# │   │   ├── config.py
+# │   │   └── app_runner.py
+# │   ├── models/
+# │   │   └── __init__.py
+# │   ├── services/
+# │   │   └── __init__.py
+# │   └── dto/
+# │       └── __init__.py
+# ├── static/
+# ├── templates/
+# ├── tests/
+# ├── .env
+# ├── .env.example
+# ├── .gitignore
+# └── requirements.txt
