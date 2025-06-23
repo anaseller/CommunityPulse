@@ -32,7 +32,7 @@ class Settings(BaseSettings):
 
     @property
     def database_url(self) -> str:
-        url_template = "mysql+pymysql://{user}:{password}@{host}{port}/{db}"
+        url_template = "mysql+pymysql://{user}:{password}@{host}:{port}/{db}"
 
         return url_template.format(
             user=self.MYSQL_USER,
