@@ -1,5 +1,7 @@
 
 from flask import Flask
+from scr.core.app_runner import create_app
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -8,6 +10,12 @@ def hello_world():  # put application's code here
 
 
 
-
 if __name__ == '__main__':
+    app = create_app()
     app.run()
+
+
+
+
+# if __name__ == '__main__':
+#     app.run()
