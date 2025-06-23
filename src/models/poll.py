@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from src.models.base import BaseModel
 from src.core.app_runner import db
@@ -33,26 +33,26 @@ class Poll(BaseModel):
         default=True,
     )
 
-# Relations
+    # Relations
 
-poll_options: Mapped[list['PollOption']] = relationship(
-    'PollOption',
-    back_populates='poll',
-    cascade='all, delete-orphan',
-)
+    poll_options: Mapped[list['PollOption']] = relationship(
+        'PollOption',
+        back_populates='poll',
+        cascade='all, delete-orphan',
+    )
 
-votes: Mapped[list['Vote']] = relationship(
-    'Vote',
-    back_populates='poll',
-    cascade='all, delete-orphan',
-)
+    votes: Mapped[list['Vote']] = relationship(
+        'Vote',
+        back_populates='poll',
+        cascade='all, delete-orphan',
+    )
 
-statistics: Mapped['PollStatistic'] = relationship(
-    'PollStatistic',
-    back_populates='poll',
-    uselist=False,
-    cascade='all, delete-orphan',
-)
+    poll_stats: Mapped['PollStatistic'] = relationship(
+        'PollStatistic',
+        back_populates='poll',
+        uselist=False,
+        cascade='all, delete-orphan',
+    )
 
 
 class PollOption(BaseModel):
@@ -78,4 +78,10 @@ class PollOption(BaseModel):
     votes: Mapped[list['Vote']] = relationship(
         'Vote',
         back_populates='options',
+    )
+
+    option_stats: Mapped['OptionStatistics'] = relationship(
+        'OptionStatistics',
+        back_populates='options',
+        cascade='all, delete-orphan',
     )

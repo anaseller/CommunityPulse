@@ -4,7 +4,6 @@ from src.models.base import BaseModel
 from src.core.app_runner import db
 
 
-
 class Vote(BaseModel):
     __tablename__ = "votes"
 
@@ -39,12 +38,13 @@ class Vote(BaseModel):
         back_populates='votes'
     )
 
-    poll_options: Mapped['PollOption'] = relationship(
+    options: Mapped['PollOption'] = relationship(
         'PollOption',
         back_populates='votes'
     )
 
     voter: Mapped['User'] = relationship(
         'User',
-        back_populates='votes'
+        back_populates='votes',
+        cascade='all, delete-orphan',
     )

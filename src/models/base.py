@@ -18,7 +18,7 @@ class TimestampMixin:
         nullable=False
     )
 
-
+# Base = declarative_base() class User(Base) -> db.Model
 class BaseModel(db.Model, TimestampMixin):
     __abstract__ = True
 
