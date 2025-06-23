@@ -1,6 +1,6 @@
 
 from flask import Flask
-from scr.core.app_runner import create_app
+from src.core.app_runner import create_app
 
 app = Flask(__name__)
 

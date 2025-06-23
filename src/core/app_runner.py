@@ -14,7 +14,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-from scr.core.config import settings
+from src.core.config import settings
 
 # INIT DB
 db = SQLAlchemy()
