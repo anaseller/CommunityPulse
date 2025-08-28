@@ -9,6 +9,17 @@ from src.dto.base import (
 )
 
 
+class CategoryRequestDTO(BaseDTO):
+    name: str = Field(
+        min_length=3,
+        max_length=50
+    )
+
+
+class CategoryResponseDTO(BaseDTO, IdDTOMixin):
+    name: str
+
+
 class PollOptionRequestDTO(BaseDTO):
     text: str = Field(
         min_length=2,
@@ -83,3 +94,15 @@ class ShortInfoPollResponseDTO(BaseDTO, IdDTOMixin):
     title: str
     start_date: datetime
     end_date: datetime
+
+
+class QuestionCreate(BaseDTO):
+    title: str = Field(..., min_length=5, max_length=255)
+    text: str = Field(..., min_length=10, max_length=1000)
+    category_id: int = Field(..., description="ID категории вопроса")
+
+
+class QuestionResponse(BaseDTO, IdDTOMixin, TimestampDTOMixin):
+    title: str
+    text: str
+    category: CategoryResponseDTO

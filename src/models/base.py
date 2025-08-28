@@ -74,6 +74,7 @@ class Question(BaseModel):
         db.ForeignKey('categories.id'),
         nullable=False
     )
+
     category: Mapped['Category'] = relationship(
         back_populates='questions'
     )
@@ -83,5 +84,5 @@ class Question(BaseModel):
             'id': self.id,
             'title': self.title,
             'text': self.text,
-            'category_id': self.category_id
+            'category_id': self.category_id,
         }
