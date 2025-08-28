@@ -41,7 +41,6 @@ class BaseModel(db.Model, TimestampMixin):
             for col in self.__table__.columns
         }
 
-
 class Category(BaseModel):
     __tablename__ = 'categories'
     name: Mapped[str] = mapped_column(
@@ -58,7 +57,6 @@ class Category(BaseModel):
             'id': self.id,
             'name': self.name,
         }
-
 
 class Question(BaseModel):
     __tablename__ = 'questions'
