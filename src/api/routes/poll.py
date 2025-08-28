@@ -10,32 +10,34 @@ polls_blueprint = Blueprint(
     url_prefix=f"{settings.API_PREFIX}/{settings.API_VERSION}/polls"
 )
 
+poll_controller = PollController()
+
 polls_blueprint.add_url_rule(
     '',
-    view_func=PollController.get_polls,
+    view_func=poll_controller.get_polls,
     methods=['GET']
 )
 
 polls_blueprint.add_url_rule(
     '',
-    view_func=PollController.create_poll,
+    view_func=poll_controller.create_poll,
     methods=['POST']
 )
 
 polls_blueprint.add_url_rule(
     '/<int:poll_id>',
-    view_func=PollController.get_poll_by_id,
+    view_func=poll_controller.get_poll,
     methods=['GET']
 )
 
 polls_blueprint.add_url_rule(
     '/<int:poll_id>',
-    view_func=PollController.update_poll,
+    view_func=poll_controller.update_poll,
     methods=['PUT', 'PATCH']
 )
 
 polls_blueprint.add_url_rule(
     '/<int:poll_id>',
-    view_func=PollController.delete_poll,
+    view_func=poll_controller.delete_poll,
     methods=['DELETE']
 )

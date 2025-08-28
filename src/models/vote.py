@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from src.models.base import BaseModel
-from src.core.app_runner import db
+from src.core.db import db
 
 
 class Vote(BaseModel):
@@ -33,18 +33,15 @@ class Vote(BaseModel):
 
     # RELATIONS
 
-    poll: Mapped['Poll'] = relationship(
-        'Poll',
-        back_populates='votes'
+    poll: Mapped["Poll"] = relationship(
+        "Poll",
+        back_populates="votes"
     )
-
-    options: Mapped['PollOption'] = relationship(
-        'PollOption',
-        back_populates='votes'
+    option: Mapped["PollOption"] = relationship(
+        "PollOption",
+        back_populates="votes"
     )
-
-    voter: Mapped['User'] = relationship(
-        'User',
-        back_populates='votes',
-        cascade='all, delete-orphan',
+    voter: Mapped["User"] = relationship(
+        "User",
+        back_populates="votes"
     )

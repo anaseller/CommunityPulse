@@ -1,0 +1,12 @@
+POST http://127.0.0.1:5000/api/v1/polls
+Content-Type: application/json
+
+{
+  "title": "New question",
+  "description": "Text of the new question.",
+  "start_date": "2025-08-10T00:00:00Z",
+  "end_date": "2025-08-11T00:00:00Z",
+  "is_active": true,
+  "is_anonymous": false,
+  "category_id": 1
+}

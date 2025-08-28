@@ -2,7 +2,7 @@ from datetime import datetime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from src.models.base import BaseModel
-from src.core.app_runner import db
+from src.core.db import db
 
 
 class Poll(BaseModel):
@@ -35,23 +35,21 @@ class Poll(BaseModel):
 
     # Relations
 
-    poll_options: Mapped[list['PollOption']] = relationship(
-        'PollOption',
-        back_populates='poll',
-        cascade='all, delete-orphan',
+    options: Mapped[list["PollOption"]] = relationship(
+        "PollOption",
+        back_populates="poll",
+        cascade="all, delete-orphan"
     )
-
-    votes: Mapped[list['Vote']] = relationship(
-        'Vote',
-        back_populates='poll',
-        cascade='all, delete-orphan',
+    votes: Mapped[list["Vote"]] = relationship(
+        "Vote",
+        back_populates="poll",
+        cascade="all, delete-orphan"
     )
-
-    poll_stats: Mapped['PollStatistic'] = relationship(
-        'PollStatistic',
-        back_populates='poll',
-        uselist=False,
-        cascade='all, delete-orphan',
+    statistics: Mapped["PollStatistics"] = relationship(
+        "PollStatistics",
+        back_populates="poll",
+        uselist=False,  # One-to-One отношение
+        cascade="all, delete-orphan"
     )
 
 
@@ -70,18 +68,15 @@ class PollOption(BaseModel):
 
     # Relations
 
-    poll: Mapped[Poll] = relationship(
-        'Poll',
-        back_populates='poll_options'
+    poll: Mapped["Poll"] = relationship(
+        "Poll",
+        back_populates="options"
     )
-
-    votes: Mapped[list['Vote']] = relationship(
-        'Vote',
-        back_populates='options',
+    votes: Mapped[list["Vote"]] = relationship(
+        "Vote",
+        back_populates="option"
     )
-
-    option_stats: Mapped['OptionStatistics'] = relationship(
-        'OptionStatistics',
-        back_populates='options',
-        cascade='all, delete-orphan',
+    option_stats: Mapped["OptionStatistics"] = relationship(
+        "OptionStatistics",
+        back_populates="option",
     )
