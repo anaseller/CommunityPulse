@@ -41,7 +41,6 @@ class BaseModel(db.Model, TimestampMixin):
             for col in self.__table__.columns
         }
 
-
 class Category(BaseModel):
     __tablename__ = 'categories'
     name: Mapped[str] = mapped_column(
@@ -59,7 +58,6 @@ class Category(BaseModel):
             'name': self.name,
         }
 
-
 class Question(BaseModel):
     __tablename__ = 'questions'
     title: Mapped[str] = mapped_column(
@@ -74,7 +72,6 @@ class Question(BaseModel):
         db.ForeignKey('categories.id'),
         nullable=False
     )
-
     category: Mapped['Category'] = relationship(
         back_populates='questions'
     )
@@ -84,5 +81,5 @@ class Question(BaseModel):
             'id': self.id,
             'title': self.title,
             'text': self.text,
-            'category_id': self.category_id,
+            'category_id': self.category_id
         }

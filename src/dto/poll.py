@@ -5,7 +5,9 @@ from pydantic import Field, field_validator, ValidationError
 from src.dto.base import (
     BaseDTO,
     IdDTOMixin,
-    TimestampDTOMixin
+    TimestampDTOMixin,
+    PaginationRequestDTO,
+    PaginationResponseDTO
 )
 
 
@@ -96,13 +98,17 @@ class ShortInfoPollResponseDTO(BaseDTO, IdDTOMixin):
     end_date: datetime
 
 
-class QuestionCreate(BaseDTO):
+class QuestionCreateDTO(BaseDTO):
     title: str = Field(..., min_length=5, max_length=255)
     text: str = Field(..., min_length=10, max_length=1000)
     category_id: int = Field(..., description="ID категории вопроса")
 
+class QuestionUpdateRequestDTO(BaseDTO):
+    title: Optional[str] = Field(None, min_length=5, max_length=255)
+    text: Optional[str] = Field(None, min_length=10, max_length=1000)
+    category_id: Optional[int] = Field(None, description="ID категории вопроса")
 
-class QuestionResponse(BaseDTO, IdDTOMixin, TimestampDTOMixin):
+class QuestionResponseDTO(BaseDTO, IdDTOMixin, TimestampDTOMixin):
     title: str
     text: str
     category: CategoryResponseDTO
